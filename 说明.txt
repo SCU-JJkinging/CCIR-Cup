@@ -1,0 +1,9 @@
+1. 先把raw_data下的train.json 通过 preprocess 下的slot_sorted.py处理成train_slot_sorted.json
+2. 把train_slot_sorted.json 通过 preprocess 下的split_train_dev.py处理成 train_8.json 和 dev_2.json
+3. 训练集: train_8.json + extend_audio.json + extend_tv.json + other_little.json == train_8_with_other.json
+4. 验证集: dev_2.json
+5. train_8_with_other.json 通过 preprocess 下的 rectify.json 变成 train_8_with_other_clear.json
+6. train_8_with_other_clear.json 通过 process_rawdata.py 生成 train_seq_in.txt、train_seq_out.txt、
+train_slot_none.txt 和 train_sorted_clear_little.json
+7. 把 train_sorted_clear_little.json 通过 preprocess 的 generate_intent.py 生成 train_intent_label.txt
+8. dev_2.json暂不处理(用处理好的)

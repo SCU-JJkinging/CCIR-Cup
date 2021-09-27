@@ -1,0 +1,14 @@
+{
+  "FilmTele-Play": ["name", "tag", "artist", "region", "play_setting", "age"],
+  "Audio-Play": ["language", "artist", "tag", "name", "play_setting"],
+  "Radio-Listen": ["name", "channel", "frequency", "artist"],
+  "TVProgram-Play": ["name", "channel", "datetime_date", "datetime_time"],
+  "Travel-Query": ["query_type", "datetime_date", "departure", "destination", "datetime_time"],
+  "Music-Play": ["language", "artist", "album", "instrument", "song", "play_mode", "age"],
+  "HomeAppliance-Control": ["command", "appliance", "details"],
+  "Calendar-Query": ["datetime_date"],
+  "Alarm-Update": ["notes", "datetime_date", "datetime_time"],
+  "Video-Play": ["name", "datetime_date", "region", "datetime_time"],
+  "Weather-Query": ["datetime_date", "type", "city", "index", "datetime_time"],
+  "Other": []
+}

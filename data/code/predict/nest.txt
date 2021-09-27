@@ -1,0 +1,46 @@
+放一个讲述美食的美国纪录片来看	{'name': '美食的美国纪录片', 'region': '美国'}
+O O O O O B-name I-name I-name B-region I-region I-name I-name I-name O O
+王力宏在重庆开演唱会的视频放来看一下	{'name': '王力宏在重庆开演唱会的视频', 'region': '重庆'}
+B-name I-name I-name I-name B-region I-region I-name I-name I-name I-name I-name I-name I-name O O O O O
+放一下钟汉良在2019年央视春晚上唱歌的视频	{'name': '钟汉良在2019年央视春晚上唱歌的视频', 'datetime_date': '2019年'}
+O O O B-name I-name I-name I-name B-datetime_date I-datetime_date I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name
+帮我找下有没有关于北京的纪录片	{'region': '北京', 'name': '北京的纪录片'}
+O O O O O O O O O B-region I-region I-name I-name I-name I-name
+给我播放2021中国女子足球锦标赛	{'datetime_date': '2021', 'region': '中国', 'name': '中国女子足球锦标赛'}
+O O O O B-datetime_date B-region I-region I-name I-name I-name I-name I-name I-name I-name
+请播放钢琴奏鸣曲	{'instrument': '钢琴', 'song': '钢琴奏鸣曲'}
+O O O B-instrument I-instrument I-song I-song I-song
+给我播放2012年刘翔参加钻石联赛上海站的视频	{'datetime_date': '2012年', 'name': '刘翔参加钻石联赛上海站的视频', 'region': '上海'}
+O O O O B-datetime_date I-datetime_date B-name I-name I-name I-name I-name I-name I-name I-name B-region I-region I-name I-name I-name I-name
+有没有介绍日本地理的纪录片，播来看看	{'region': '日本', 'name': '日本地理的纪录片'}
+O O O O O B-region I-region I-name I-name I-name I-name I-name I-name O O O O O
+给我播放阿飞今年讲解游戏的系列视频吧	{'datetime_date': '今年', 'name': '今年讲解游戏的系列视频'}
+O O O O O O B-datetime_date I-datetime_date I-name I-name I-name I-name I-name I-name I-name I-name I-name O
+超级想看辣目洋子今年在超新星运动会上表演的艺术体操视频	{'name': '辣目洋子今年在超新星运动会上表演的艺术体操视频', 'datetime_date': '今年'}
+O O O O B-name I-name I-name I-name B-datetime_date I-datetime_date I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name
+给我找一找吃货俱乐部在意大利拍的那一期	{'name': '吃货俱乐部在意大利拍的那一期', 'region': '意大利'}
+O O O O O B-name I-name I-name I-name I-name I-name B-region I-region I-region I-name I-name I-name I-name I-name
+4月16日的斯里兰卡青睐中国这个视频能找到吗	{'datetime_date': '4月16日', 'region': '斯里兰卡', 'name': '斯里兰卡青睐中国这个视频'}
+B-datetime_date I-datetime_date I-datetime_date I-datetime_date O B-region I-region I-region I-region I-name I-name I-name I-name I-name I-name I-name I-name O O O O
+周末特供2021-316的节目回看一下	{'datetime_date': '周末', 'name': '周末特供2021-316'}
+B-datetime_date I-datetime_date I-name I-name I-name I-name I-name O O O O O O O
+我想看童蕾在6月15日拍摄都市丽人的花絮视频	{'name': '童蕾在6月15日拍摄都市丽人的花絮视频', 'datetime_date': '6月15日'}
+O O O B-name I-name I-name B-datetime_date I-datetime_date I-datetime_date I-datetime_date I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name
+推荐一部催泪的美国纪录片来看	{'name': '催泪的美国纪录片', 'region': '美国'}
+O O O O B-name I-name I-name B-region I-region I-name I-name I-name O O
+一场关于爱情的谎言在4月26播放的花絮有么	{'name': ['一场关于爱情的谎言', '4月26播放的花絮'], 'datetime_date': '4月26'}
+B-name I-name I-name I-name I-name I-name I-name I-name I-name O B-datetime_date I-datetime_date I-datetime_date I-name I-name I-name I-name I-name O O
+我想看2012年麦当娜在巴黎举行演唱会的那个视频	{'datetime_date': '2012年', 'name': '麦当娜在巴黎举行演唱会的那个视频', 'region': '巴黎'}
+O O O B-datetime_date I-datetime_date B-name I-name I-name I-name B-region I-region I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name
+播放一个豆瓣评分最高的日本纪录片来看	{'name': '豆瓣评分最高的日本纪录片', 'region': '日本'}
+O O O O B-name I-name I-name I-name I-name I-name I-name B-region I-region I-name I-name I-name O O
+给我放一个高桥留美子的日本动漫片剪辑版视频	{'name': '高桥留美子的日本动漫片剪辑版视频', 'region': '日本'}
+O O O O O B-name I-name I-name I-name I-name I-name B-region I-region I-name I-name I-name I-name I-name I-name I-name I-name
+找几个美国动漫视频小短片来看看	{'region': '美国', 'name': '美国动漫视频小短片'}
+O O O B-region I-region I-name I-name I-name I-name I-name I-name I-name O O O
+吸血鬼侦探这个韩国电视剧的花絮给我播放一下	{'name': '吸血鬼侦探这个韩国电视剧的花絮', 'region': '韩国'}
+B-name I-name I-name I-name I-name I-name I-name B-region I-region I-name I-name I-name I-name I-name I-name O O O O O O
+回放2008年的北京奥运会	{'datetime_date': '2008年', 'region': '北京', 'name': '北京奥运会'}
+O O B-datetime_date I-datetime_date O B-region I-region I-name I-name I-name
+昨天法国报告“罕见” 变异新冠病毒的新闻视频再给我放下吧	{'datetime_date': '昨天', 'region': '法国', 'name': '法国报告“罕见” 变异新冠病毒的新闻视频'}
+B-datetime_date I-datetime_date B-region I-region I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name I-name O O O O O O
