@@ -115,13 +115,13 @@ None表示不存在这一类值。然后对其进行类似意图识别那样做�
 
 #### 1.JointErine 模型
 
-思路参照：[BERT for Joint Intent Classification and Slot Filling](www.baidu.com)
+思路参照：[BERT for Joint Intent Classification and Slot Filling](http://arxiv.org/abs/1902.10909v1)
 
 预训练模型并没有使用中文版 bert base，而是使用的是百度的中文版 ernie-1.0 base，三个任务进行联合训练。意图识别和非标准槽填充使用 erine 模型的输出分别连接一个全连接层进行分类；标准槽填充得到 erine 的输出后，再将其输入到 CRF 层，erine预训练模型与CRF层采用不同的学习率，erine 的学习率是5e-5，CRF层的学习率是5e-2
 
 #### 2.InteractModel_1 模型
 
-思路参照：[A CO-INTERACTIVE TRANSFORMER FOR JOINT SLOT FILLING AND INTENT DETECTION]()
+思路参照：[A CO-INTERACTIVE TRANSFORMER FOR JOINT SLOT FILLING AND INTENT DETECTION](http://arxiv.org/abs/2010.03880v3)
 
 仍然是三个任务联合训练，不同的是，意图识别和标准槽填充部分进行了一层交互，非标准槽填充未与上述二个任务进行交互，而是把预训练模型的输出 pooled_output 直接输入到全连接层中进行分类。
 
