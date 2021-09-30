@@ -6,6 +6,10 @@
 先从ccir/data/user_data/user_data.txt中的百度云网盘链接下载user_data.zip，然后将其解压并替换掉user_data目录；
 然后从ccir/image/ccir-image.txt的百度云网盘链接下载镜像文件ccir-image.tar，并将其放在ccir/image目录下
 
+进入到ccir/image目录下，加载 ccir-image.tar 镜像文件
+  ```
+sudo docker load -i ccir-image.tar
+  ```
 1.线上训练 + 线上推理
 
   我的项目名字叫 ccir 
