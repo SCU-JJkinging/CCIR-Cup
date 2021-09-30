@@ -10,7 +10,7 @@
   ```
 sudo docker load -i ccir-image.tar
   ```
-1.线上训练 + 线上推理
+#### 1.线上训练 + 线上推理
 
   我的项目名字叫 ccir 
 
@@ -29,7 +29,7 @@ sudo docker load -i ccir-image.tar
 
   是我本地项目 ccir 所在的绝对路径，线上复现时需要替换成ccir在线上的绝对路径名，然后把它挂载到镜像的 /ccir 目录下，镜像名称是 ccir-image
 
-2.本地训练 + 线上推理
+#### 2.本地训练 + 线上推理
 
    如果需要直接复现线下训练结果，则：
 
@@ -57,6 +57,8 @@ sudo docker load -i ccir-image.tar
    ```
    ccir/data/user_data/output_model/InteractModel_3/trained_model 
    ```
+
+**注意:** run.sh和run_infer.sh在window下打开可能会出现格式问题，如果运行报错，可以尝试在vim中，命令模式输入:set ff=unix，转换成unix的格式，然后保存退出重新运行。<br>
 
    
 
