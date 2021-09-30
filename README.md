@@ -244,7 +244,6 @@ ccir
 |       |       |-- special_tokens_map.json
 |       |       |-- tokenizer_config.json
 |       |       `-- vocab.txt
-|       |-- readme_images                               —— 存放赛题解决方案和算法介绍的README文档的图片
 |       |-- test_data                                   —— 测试集文件夹
 |       |   |-- test_B_final_text.json                  —— 测试集原始json文件
 |       |   `-- test_seq_in_B.txt                       —— 经过Tokenizer分词后的测试集文件
@@ -255,6 +254,7 @@ ccir
 |           |-- train_seq_out.txt                       —— 验证集数据的序列标注
 |           `-- train_slot_none.txt                     —— 验证集数据的非标准槽填充分类标签
 |-- image                                               —— 镜像相关文件夹
+|   |-- readme_images                                   —— 存放赛题解决方案和算法介绍的README文档的图片
 |   |-- ccir-image.tar                                  —— 镜像文件
 |   |-- README.md                                       —— 关于复现具体操作的REDAME文档
 |   |-- run_infer.sh                                    —— 使用本地训练的模型进行线上推理的脚本
