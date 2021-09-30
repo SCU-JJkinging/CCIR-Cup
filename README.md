@@ -135,19 +135,19 @@ $$
 
 **标签注意力层**
 
-![image-20210929212611984](data/user_data/readme_images/image-20210929212611984.png)
+![image-20210929212611984](image/readme_images/image-20210929212611984.png)
 
 **协同交互注意力层**
 
-![image-20210929212740433](data/user_data/readme_images/image-20210929212740433.png)
+![image-20210929212740433](image/readme_images/image-20210929212740433.png)
 
 **前馈神经网络层**
 
-![image-20210929212830068](data/user_data/readme_images/image-20210929212830068.png)
+![image-20210929212830068](image/readme_images/image-20210929212830068.png)
 
 ***解码器层部分***
 
-![image-20210929213002909](data/user_data/readme_images/image-20210929213002909.png)
+![image-20210929213002909](image/readme_images/image-20210929213002909.png)
 
 #### 3.InteractModel_3模型
 
