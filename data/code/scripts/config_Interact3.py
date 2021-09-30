@@ -11,14 +11,14 @@ class Config(object):
         self.dev_file = '../../user_data/dev_data/dev_seq_in.txt'
         self.test_file = '../../user_data/test_data/test_seq_in.txt'
         self.intent_label_file = '../../user_data/common_data/intent_label.txt'
-        self.vocab_file = '../../user_data/pretrained_model/erine/vocab.txt'
+        self.vocab_file = '../../user_data/pretrained_model/ernie/vocab.txt'
         self.train_intent_file = '../../user_data/train_data/train_intent_label.txt'
         self.dev_intent_file = '../../user_data/dev_data/dev_intent_label.txt'
         self.max_length = 512
         self.batch_size = 16
         self.test_batch_size = 32
-        self.bert_model_path = '../../user_data/pretrained_model/erine'
-        self.checkpoint = None  # '../../user_data/output_model/InteractModel_3/trained_model/model_41.pth.tar'
+        self.bert_model_path = '../../user_data/pretrained_model/ernie'
+        self.checkpoint = None  # '../../user_data/output_model/InteractModel_3/model_27.pth.tar'
         self.use_gpu = True
         self.cuda = "cuda:0"
         self.attention_dropout = 0.1

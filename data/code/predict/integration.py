@@ -4,13 +4,16 @@
 # @Author  : JJkinging
 # @File    : integration.py
 import json
+import os
 
-with open('../result/JointBert/new_B/result_bert_42_post.json', 'r', encoding='utf-8') as fp:
-    second_data = json.load(fp)
-with open('../result/InteractModel/1/new_B/result_interact_1_post.json', 'r', encoding='utf-8') as fp:
-    third_data = json.load(fp)
-with open('../result/InteractModel/3/new_B/result_interact_3_post.json', 'r', encoding='utf-8') as fp:
+from data.code.predict.post_process import process
+
+with open('../../user_data/tmp_result/result_interact_1_post.json', 'r', encoding='utf-8') as fp:
     best_data = json.load(fp)
+with open('../../user_data/tmp_result/result_interact_3_post.json', 'r', encoding='utf-8') as fp:
+    second_data = json.load(fp)
+with open('../../user_data/tmp_result/result_bert_post.json', 'r', encoding='utf-8') as fp:
+    third_data = json.load(fp)
 
 idx_list = []
 res = {}
@@ -110,6 +113,10 @@ for i in range(len(best_data)):
     tmp['slots'] = slot_dic
     res[idx] = tmp
 
-print(res)
-with open('../result/InteractModel/1/new_B/final_B_2.json', 'w', encoding='utf-8') as fp:
+with open('../../prediction_result/result_tmp.json', 'w', encoding='utf-8') as fp:
     json.dump(res, fp, ensure_ascii=False)
+
+source_path = '../../prediction_result/result_tmp.json'
+target_path = '../../prediction_result/result.json'
+process(source_path, target_path)
+os.remove('../../prediction_result/result_tmp.json')

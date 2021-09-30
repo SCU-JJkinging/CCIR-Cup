@@ -5,6 +5,8 @@
 # @File    : main.py
 
 import os
+import warnings
+
 import torch
 import random
 import numpy as np
@@ -30,6 +32,7 @@ def torch_seed(seed):
 
 
 def main():
+    warnings.filterwarnings("ignore")
     torch_seed(1000)
     # 设置GPU数目
     # os.environ['CUDA_VISIBLE_DEVICES'] = '0'
@@ -112,7 +115,6 @@ def main():
           20 * "=",
           "Training Model model on device: {}".format(device),
           20 * "=")
-    patience_counter = 0
     for epoch in range(start_epoch, config.epochs+1):
         epochs_count.append(epoch)
         print("* Training epoch {}:".format(epoch))
@@ -146,32 +148,16 @@ def main():
         scheduler.step()
 
         # Early stopping on validation accuracy.
-        if valid_loss > best_score:
-            patience_counter += 1
-        else:
-            best_score = valid_loss
-            patience_counter = 0
+        if sen_acc >= best_score:
+            best_score = sen_acc
             torch.save({"epoch": epoch,
                         "model": model.state_dict(),
                         "best_score": best_score,
+                        "optimizer": optimizer.state_dict(),
                         "epochs_count": epochs_count,
                         "train_losses": train_losses,
                         "valid_losses": valid_losses},
-                       os.path.join(config.target_dir, "model_best.pth.tar"))
-
-        # Save the model at each epoch.
-        torch.save({"epoch": epoch,
-                    "model": model.state_dict(),
-                    "best_score": best_score,
-                    "optimizer": optimizer.state_dict(),
-                    "epochs_count": epochs_count,
-                    "train_losses": train_losses,
-                    "valid_losses": valid_losses},
-                   os.path.join(config.target_dir, "model_{}.pth.tar".format(epoch)))
-
-        if patience_counter >= config.patience:
-            print("-> Early stopping: patience limit reached, stopping...")
-            break
+                       os.path.join(config.target_dir, "bert_model_best.pth.tar"))
 
 
 if __name__ == "__main__":

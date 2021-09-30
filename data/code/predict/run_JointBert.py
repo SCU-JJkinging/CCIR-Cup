@@ -3,6 +3,8 @@
 # @Time    : 2021/9/9 15:22
 # @Author  : JJkinging
 # @File    : run_predict.py
+import warnings
+
 import torch
 import json
 from torch.utils.data import DataLoader
@@ -172,10 +174,7 @@ def process_nest(tokenizer, input_ids, slot_pre, ori_sen):  # 处理嵌套
         elif tag.startswith('I-') and tag[2:] != slot_pre[i-1][2:]:  # 'I-' 且标签与前一个slot不同
             start_inner = start_outer
             end_inner = end_outer
-            try:
-                key_inner = key_outer
-            except Exception:
-                print('异常')
+            key_inner = key_outer
             # 处理内层
             tmp_dict = get_slot(tokenizer, tmp_dict, input_ids, ori_sen, start_inner, end_inner, key_inner)
             # start_outer不变
@@ -243,7 +242,6 @@ def find_slot(tokenizer, input_ids_list, slot_pre_output, ori_sen_list):
         if is_nest(slot_ids[1:-1]):  # 如果确实存在嵌套行为
             tmp_dict = process_nest(tokenizer, input_ids_list[i][1:-1], slot_pre_output[i][1:-1], ori_sen_list[i])
             slot_list.append(tmp_dict)
-            print(slot_ids[1:-1])
             fp.write(str(ori_sen_list[i])+'\t')
             fp.write(str(tmp_dict)+'\n')
             fp.write(' '.join(slot_pre_output[i][1:-1])+'\n')
@@ -278,19 +276,20 @@ def find_slot(tokenizer, input_ids_list, slot_pre_output, ori_sen_list):
                             start = 0
                             end = 0
             slot_list.append(tmp_dict)
-    print(count)
+    print(str(count)+'——JointBert 推理完成！')
     fp.close()
     return slot_list
 
 
 if __name__ == "__main__":
+    warnings.filterwarnings("ignore")
     config = Config()
     device = torch.device(config.cuda if torch.cuda.is_available() else "cpu")
     with open('../../user_data/common_data/region_dic.json', 'r', encoding='utf-8') as fp:
         region_dict = json.load(fp)
-    tokenizer = AutoTokenizer.from_pretrained('../../user_data/pretrained_model/erine')
-    print('loading corpus')
-    vocab = load_vocab('../../user_data/pretrained_model/erine/vocab.txt')
+    tokenizer = AutoTokenizer.from_pretrained('../../user_data/pretrained_model/ernie')
+    print('JointBert 开始推理！')
+    vocab = load_vocab('../../user_data/pretrained_model/ernie/vocab.txt')
     id2intent = load_reverse_vocab('../../user_data/common_data/intent_label.txt')
     id2slotNone = load_reverse_vocab('../../user_data/common_data/slot_none_vocab.txt')
     id2slot = load_reverse_vocab('../../user_data/common_data/slot_label.txt')
@@ -307,13 +306,13 @@ if __name__ == "__main__":
     test_loader = DataLoader(test_dataset, shuffle=False, batch_size=config.batch_size,
                              collate_fn=collate_to_max_length)
 
-    model = JointBertModel('../../user_data/pretrained_model/erine',
+    model = JointBertModel('../../user_data/pretrained_model/ernie',
                            config.bert_hidden_size,
                            intent_tagset_size,
                            slot_none_tag_size,
                            slot_tag_size,
                            device).to(device)
-    checkpoint = torch.load('../../user_data/output_model/JointBert/trained_model/model_42.pth.tar')
+    checkpoint = torch.load('../../user_data/output_model/JointBert/bert_model_best.pth.tar', map_location='cpu')
     model.load_state_dict(checkpoint["model"])
 
     # -------------------- Testing ------------------- #
@@ -365,7 +364,7 @@ if __name__ == "__main__":
         index = 'NLU' + '0'*o_num + str(i)
         res[index] = big_tmp
 
-    with open('../../user_data/tmp_result/result_bert_42.json', 'w', encoding='utf-8') as fp:
+    with open('../../user_data/tmp_result/result_bert.json', 'w', encoding='utf-8') as fp:
         json.dump(res, fp, ensure_ascii=False)
 
     source_path = '../../user_data/tmp_result/result_bert.json'

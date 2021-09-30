@@ -5,6 +5,8 @@
 # @File    : main.py
 
 import os
+import warnings
+
 import torch
 import random
 import numpy as np
@@ -31,6 +33,7 @@ def torch_seed(seed):
 
 def main():
     torch_seed(1000)
+    warnings.filterwarnings("ignore")
     # 设置GPU数目
     # os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     config = Config()
@@ -110,7 +113,6 @@ def main():
           20 * "=",
           "Training Model model on device: {}".format(device),
           20 * "=")
-    patience_counter = 0
     for epoch in range(start_epoch, config.epochs+1):
         epochs_count.append(epoch)
         print("* Training epoch {}:".format(epoch))
@@ -123,7 +125,7 @@ def main():
         train_losses.append(train_loss)
         print("-> Training time: {:.4f}s loss = {:.4f}"
               .format(train_time, train_loss))
-        with open('../../user_data/output_model/InteractModel_3/metric.txt', 'a', encoding='utf-8') as fp:
+        with open('../../user_data/output_model/InteractModel_3/trained_model/metric.txt', 'a', encoding='utf-8') as fp:
             fp.write('Epoch:' + str(epoch) + '\t' + 'Loss:' + str(round(train_loss, 4)) + '\t')
 
         valid_time, valid_loss, intent_accuracy, slot_none, slot, sen_acc = valid(model,
@@ -133,7 +135,7 @@ def main():
                                                                                   )
         print("-> Valid time: {:.4f}s loss = {:.4f} intentAcc: {:.4f} slot_none: {:.4f} slot_F1: {:.4f} SEN_ACC: {:.4f}"
               .format(valid_time, valid_loss, intent_accuracy, slot_none[2], slot[2], sen_acc))
-        with open('../../user_data/output_model/InteractModel_3/metric.txt', 'a', encoding='utf-8') as fp:
+        with open('../../user_data/output_model/InteractModel_3/trained_model/metric.txt', 'a', encoding='utf-8') as fp:
             fp.write('Loss:' + str(round(valid_loss, 4)) + '\t' + 'Intent_acc:' +
                      str(round(intent_accuracy, 4)) + '\t' + 'slot_none:' +
                      str(round(slot_none[2], 4)) + '\t''slot_F1:' + str(round(slot[2], 4)) + '\t'
@@ -144,32 +146,17 @@ def main():
         scheduler.step()
 
         # Early stopping on validation accuracy.
-        if valid_loss > best_score:
-            patience_counter += 1
-        else:
-            best_score = valid_loss
-            patience_counter = 0
+        if sen_acc >= best_score:
+            best_score = sen_acc
             torch.save({"epoch": epoch,
                         "model": model.state_dict(),
                         "best_score": best_score,
+                        "optimizer": optimizer.state_dict(),
                         "epochs_count": epochs_count,
                         "train_losses": train_losses,
                         "valid_losses": valid_losses},
-                       os.path.join(config.target_dir, "model_best.pth.tar"))
+                       os.path.join(config.target_dir, "Interact3_model_best.pth.tar"))
 
-        # Save the model at each epoch.
-        torch.save({"epoch": epoch,
-                    "model": model.state_dict(),
-                    "best_score": best_score,
-                    "optimizer": optimizer.state_dict(),
-                    "epochs_count": epochs_count,
-                    "train_losses": train_losses,
-                    "valid_losses": valid_losses},
-                   os.path.join(config.target_dir, "model_{}.pth.tar".format(epoch)))
-
-        if patience_counter >= config.patience:
-            print("-> Early stopping: patience limit reached, stopping...")
-            break
 
 
 if __name__ == "__main__":
