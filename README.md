@@ -1,5 +1,6 @@
 # 2021 CCF BDCI 全国信息检索挑战杯(CCIR-Cup) 智能人机交互自然语言理解赛道第二名解决方案（意图识别&槽填充）<br>
 比赛网址: <a href='https://www.datafountain.cn/competitions/511'>CCIR-Cup-智能人机交互自然语言理解</a>
+![@}77TWD9UCSZ5~5~5NQ5RAP](https://user-images.githubusercontent.com/59439162/139065196-254292ae-81d9-44f4-945b-8cc17178e41d.png)
 ## 1.依赖环境：
 
 * python==3.8
